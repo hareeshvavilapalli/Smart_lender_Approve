@@ -3,138 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Lender - Loan Approval Prediction</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Smart Lender | Premium Loan Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="/">
-                <i class="fas fa-building"></i> Smart Lender
+    <nav class="top-nav">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand__mark">S</span>
+                <span>Smart Lender</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
-                </ul>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/form">Loan Prediction</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container h-100 d-flex align-items-center">
-            <div class="row w-100 align-items-center">
-                <div class="col-lg-6 col-md-12">
-                    <h1 class="hero-title">Get Your Loan Approved Instantly</h1>
-                    <p class="hero-subtitle">Advanced AI-powered loan prediction system that analyzes your financial profile in seconds</p>
-                    <div class="hero-buttons">
-                        <a href="/form" class="btn btn-primary-custom btn-lg me-3">
-                            <i class="fas fa-rocket"></i> Start Prediction
-                        </a>
-                        <a href="#how-it-works" class="btn btn-outline-custom btn-lg">
-                            <i class="fas fa-info-circle"></i> Learn More
-                        </a>
-                    </div>
+    <main class="page-shell">
+        <section class="hero-card reveal">
+            <div class="hero-copy">
+                <p class="hero-eyebrow">AI-powered financing platform</p>
+                <h1>Smart Loan Approval Prediction System</h1>
+                <p>Experience a premium, banking-style prequalification journey tailored for modern borrowers and fintech-ready projects.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="/form">Predict Loan Eligibility</a>
+                    <a class="btn btn-secondary" href="#about">Explore Platform</a>
                 </div>
-                <div class="col-lg-6 col-md-12 text-center">
-                    <div class="hero-illustration">
-                        <i class="fas fa-chart-line"></i>
+                <ul class="hero-points">
+                    <li><i class="fa-solid fa-shield-halved"></i> Secure and compliant</li>
+                    <li><i class="fa-solid fa-bolt"></i> Instant eligibility analysis</li>
+                    <li><i class="fa-solid fa-chart-line"></i> Insight-driven recommendations</li>
+                </ul>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-card">
+                    <div class="dashboard-card__header">
+                        <span class="dashboard-card__tag">Portfolio Insight</span>
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div class="dashboard-metric">
+                        <strong>94%</strong>
+                        <span>Approval readiness score</span>
+                    </div>
+                    <div class="dashboard-bars">
+                        <div class="bar"><span></span></div>
+                        <div class="bar"><span></span></div>
+                        <div class="bar"><span></span></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Smart Lender?</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h4>Fast & Accurate</h4>
-                        <p>Get instant predictions powered by machine learning algorithms</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h4>Secure & Private</h4>
-                        <p>Your data is encrypted and never shared with third parties</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <h4>Data-Driven</h4>
-                        <p>Decisions based on comprehensive financial analysis</p>
-                    </div>
-                </div>
+        <section class="stats-grid reveal">
+            <article class="mini-card">
+                <h3>Instant Review</h3>
+                <p>Get quick insights in seconds with a simple, guided flow.</p>
+            </article>
+            <article class="mini-card">
+                <h3>Built for Trust</h3>
+                <p>Professionally structured fields that feel exactly like a real banking portal.</p>
+            </article>
+            <article class="mini-card">
+                <h3>Smart Decisions</h3>
+                <p>Designed for final-year presentations and portfolio-ready storytelling.</p>
+            </article>
+        </section>
+
+        <section class="section-card reveal" id="about">
+            <div class="section-heading">
+                <span class="section-badge">Why it stands out</span>
+                <h2>Banking-grade experience in a lightweight app</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works-section" id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <div class="row">
-                <div class="col-md-3 text-center">
-                    <div class="step-circle">1</div>
-                    <h5>Fill Details</h5>
-                    <p>Enter your personal and financial information</p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="step-circle">2</div>
-                    <h5>AI Analysis</h5>
-                    <p>Our system analyzes your profile</p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="step-circle">3</div>
-                    <h5>Get Result</h5>
-                    <p>Receive instant prediction & recommendations</p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="step-circle">4</div>
-                    <h5>Take Action</h5>
-                    <p>Proceed with your loan application</p>
-                </div>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Fast & Accurate</h3>
+                    <p>Modern UI paired with the same prediction engine you already use.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Secure & Professional</h3>
+                    <p>Clean layout and structured data entry keep the experience polished and confident.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <h3>Responsive by Design</h3>
+                    <p>Works seamlessly across mobile, tablet, and desktop screens.</p>
+                </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container text-center">
-            <h2>Ready to Check Your Loan Eligibility?</h2>
-            <p>Join thousands of satisfied customers who got approved</p>
-            <a href="/form" class="btn btn-light btn-lg">Start Your Application Now</a>
-        </div>
-    </section>
+        <section class="section-card section-card--alt reveal">
+            <div class="section-heading">
+                <span class="section-badge">How it works</span>
+                <h2>From application to decision in four simple steps</h2>
+            </div>
+            <div class="steps-grid">
+                <article class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Fill the form</h3>
+                    <p>Enter your personal and financial details through polished, guided sections.</p>
+                </article>
+                <article class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Let the model analyze</h3>
+                    <p>Your data is processed using the existing machine-learning pipeline.</p>
+                </article>
+                <article class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Review the result</h3>
+                    <p>See the outcome presented in a premium dashboard-style layout.</p>
+                </article>
+                <article class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Take the next step</h3>
+                    <p>Use the result as a clear starting point for your loan journey.</p>
+                </article>
+            </div>
+        </section>
 
-    <!-- Footer -->
+        <section class="contact-card reveal" id="contact">
+            <div>
+                <p class="hero-eyebrow">Ready to begin?</p>
+                <h2>Start your smart loan eligibility check today.</h2>
+                <p>Designed to look like a real fintech experience, while keeping every backend workflow intact.</p>
+            </div>
+            <a class="btn btn-primary" href="/form">Start Application</a>
+        </section>
+    </main>
+
     <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2024 Smart Lender. All rights reserved. | Secure Loan Prediction System</p>
+        <div class="page-shell footer-grid">
+            <div>
+                <h3>Smart Lender</h3>
+                <p>Premium loan prediction experiences for ambitious student projects and modern portfolios.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#about">About</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:hello@smartlender.dev">hello@smartlender.dev</a>
+                <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

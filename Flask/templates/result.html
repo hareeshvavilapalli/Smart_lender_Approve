@@ -3,239 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Prediction Result - Smart Lender</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Prediction Result | Smart Lender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="/">
-                <i class="fas fa-building"></i> Smart Lender
+    <nav class="top-nav">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand__mark">S</span>
+                <span>Smart Lender</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                </ul>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#details">Details</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Result Section -->
-    <div class="result-container">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <!-- Result Card -->
-                    {% if prediction == 1 %}
-                    <div class="result-card result-approved animate-fade-in">
-                        <div class="result-header approved-bg">
-                            <div class="result-icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <h2>Loan Approved!</h2>
-                            <p>Congratulations, {{ name }}!</p>
-                        </div>
+    <main class="page-shell">
+        <section class="result-banner reveal">
+            {% if prediction == 1 %}
+            <div class="result-banner__icon success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <p class="hero-eyebrow">Application Status</p>
+                <h1>Loan Approved</h1>
+                <p>Congratulations, {{ name }}! Your profile aligns well with the eligibility model.</p>
+            </div>
+            {% else %}
+            <div class="result-banner__icon review-icon">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+                <p class="hero-eyebrow">Application Status</p>
+                <h1>Under Review</h1>
+                <p>Thank you, {{ name }}. Your profile needs a closer review before a final decision.</p>
+            </div>
+            {% endif %}
+        </section>
 
-                        <div class="result-body">
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="fas fa-lightbulb"></i>
-                                <strong>Good News!</strong> Based on our AI analysis, your loan application is likely to be approved.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-
-                            <p class="result-description">
-                                Your financial profile meets our eligibility criteria. You can now proceed with your formal loan application.
-                            </p>
-
-                            <div class="next-steps">
-                                <h5>Next Steps:</h5>
-                                <ul>
-                                    <li><i class="fas fa-arrow-right"></i> Complete your official application</li>
-                                    <li><i class="fas fa-arrow-right"></i> Submit required documents</li>
-                                    <li><i class="fas fa-arrow-right"></i> Wait for final verification</li>
-                                    <li><i class="fas fa-arrow-right"></i> Receive loan disbursal</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {% else %}
-                    <div class="result-card result-rejected animate-fade-in">
-                        <div class="result-header rejected-bg">
-                            <div class="result-icon">
-                                <i class="fas fa-times-circle"></i>
-                            </div>
-                            <h2>Application Under Review</h2>
-                            <p>Thank you for applying, {{ name }}!</p>
-                        </div>
-
-                        <div class="result-body">
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <i class="fas fa-info-circle"></i>
-                                <strong>Status Update:</strong> Your application needs further review based on our initial assessment.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-
-                            <p class="result-description">
-                                Your profile requires additional review. Our lending team will contact you with next steps. Please don't worry, there may be other options available to you.
-                            </p>
-
-                            <div class="next-steps">
-                                <h5>Recommendations:</h5>
-                                <ul>
-                                    <li><i class="fas fa-arrow-right"></i> Improve your credit score</li>
-                                    <li><i class="fas fa-arrow-right"></i> Increase your income documentation</li>
-                                    <li><i class="fas fa-arrow-right"></i> Consider a co-applicant</li>
-                                    <li><i class="fas fa-arrow-right"></i> Contact our support team</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    <!-- Details Card -->
-                    <div class="details-card animate-slide-up">
-                        <h4 class="mb-4">
-                            <i class="fas fa-user-check"></i> Application Details
-                        </h4>
-
-                        <!-- Personal Details -->
-                        <div class="details-section">
-                            <h6 class="details-section-title">
-                                <i class="fas fa-user"></i> Personal Information
-                            </h6>
-                            <div class="details-grid">
-                                <div class="detail-item">
-                                    <span class="detail-label">Full Name</span>
-                                    <span class="detail-value">{{ name }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Email</span>
-                                    <span class="detail-value">{{ email }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Phone</span>
-                                    <span class="detail-value">{{ phone }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Gender</span>
-                                    <span class="detail-value">{{ gender }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Marital Status</span>
-                                    <span class="detail-value">{{ married }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Dependents</span>
-                                    <span class="detail-value">{{ dependents }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Education & Employment -->
-                        <div class="details-section">
-                            <h6 class="details-section-title">
-                                <i class="fas fa-briefcase"></i> Education & Employment
-                            </h6>
-                            <div class="details-grid">
-                                <div class="detail-item">
-                                    <span class="detail-label">Education</span>
-                                    <span class="detail-value">{{ education }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Self Employed</span>
-                                    <span class="detail-value">{{ self_employed }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Financial Details -->
-                        <div class="details-section">
-                            <h6 class="details-section-title">
-                                <i class="fas fa-money-bill-wave"></i> Financial Information
-                            </h6>
-                            <div class="details-grid">
-                                <div class="detail-item">
-                                    <span class="detail-label">Applicant Income</span>
-                                    <span class="detail-value detail-highlight">₹{{ "{:,.0f}".format(applicant_income|float) }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Co-Applicant Income</span>
-                                    <span class="detail-value detail-highlight">₹{{ "{:,.0f}".format(coapplicant_income|float) }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Total Income</span>
-                                    <span class="detail-value detail-highlight">₹{{ "{:,.0f}".format(applicant_income|float + coapplicant_income|float) }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Loan Amount</span>
-                                    <span class="detail-value detail-highlight">₹{{ "{:,.0f}".format(loan_amount|float) }}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Loan Term</span>
-                                    <span class="detail-value">{{ loan_amount_term }} months</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Credit History</span>
-                                    <span class="detail-value">
-                                        {% if credit_history == '1' %}
-                                        <span class="badge bg-success">Good</span>
-                                        {% else %}
-                                        <span class="badge bg-danger">Bad</span>
-                                        {% endif %}
-                                    </span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Property Area</span>
-                                    <span class="detail-value">{{ property_area }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Loan Ratio -->
-                        <div class="details-section">
-                            <h6 class="details-section-title">
-                                <i class="fas fa-chart-pie"></i> Loan Analysis
-                            </h6>
-                            <div class="loan-ratio">
-                                <div class="ratio-item">
-                                    <span class="ratio-label">Loan-to-Income Ratio</span>
-                                    <span class="ratio-value">{{ "{:.2f}".format((loan_amount|float / ((applicant_income|float + coapplicant_income|float) or 1)) * 100) }}%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="action-buttons">
-                        <a href="/form" class="btn btn-primary-custom btn-lg">
-                            <i class="fas fa-redo"></i> New Application
-                        </a>
-                        <a href="/" class="btn btn-outline-custom btn-lg">
-                            <i class="fas fa-home"></i> Back to Home
-                        </a>
+        <section class="result-grid reveal">
+            <article class="panel-card result-card">
+                <div class="section-card__header">
+                    <div class="section-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div>
+                        <h3>What the model suggests</h3>
+                        <p>Clear, concise next steps for the applicant.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                {% if prediction == 1 %}
+                <div class="alert-box success-box">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <p>Based on the provided profile, the application appears suitable for further processing.</p>
+                </div>
+                <ul class="check-list">
+                    <li><i class="fa-solid fa-arrow-right"></i> Complete the official application form</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Submit the supporting documents</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Await the next verification stage</li>
+                </ul>
+                {% else %}
+                <div class="alert-box review-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p>The initial assessment suggests additional review. This is not the final lending decision.</p>
+                </div>
+                <ul class="check-list">
+                    <li><i class="fa-solid fa-arrow-right"></i> Improve the credit profile where possible</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Increase supporting income documentation</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Consider a co-applicant if needed</li>
+                </ul>
+                {% endif %}
+            </article>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2024 Smart Lender. All rights reserved. | Secure Loan Prediction System</p>
+            <article class="panel-card" id="details">
+                <div class="section-card__header">
+                    <div class="section-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <div>
+                        <h3>Application Details</h3>
+                        <p>Every submitted detail is shown here for review.</p>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Personal Information</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span>Full Name</span><strong>{{ name }}</strong></div>
+                        <div class="detail-item"><span>Email</span><strong>{{ email }}</strong></div>
+                        <div class="detail-item"><span>Phone</span><strong>{{ phone }}</strong></div>
+                        <div class="detail-item"><span>Gender</span><strong>{{ gender }}</strong></div>
+                        <div class="detail-item"><span>Marital Status</span><strong>{{ married }}</strong></div>
+                        <div class="detail-item"><span>Dependents</span><strong>{{ dependents }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Education & Employment</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span>Education</span><strong>{{ education }}</strong></div>
+                        <div class="detail-item"><span>Self Employed</span><strong>{{ self_employed }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Financial Details</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span>Applicant Income</span><strong>₹{{ "{:,.0f}".format(applicant_income|float) }}</strong></div>
+                        <div class="detail-item"><span>Co-Applicant Income</span><strong>₹{{ "{:,.0f}".format(coapplicant_income|float) }}</strong></div>
+                        <div class="detail-item"><span>Total Income</span><strong>₹{{ "{:,.0f}".format(applicant_income|float + coapplicant_income|float) }}</strong></div>
+                        <div class="detail-item"><span>Loan Amount</span><strong>₹{{ "{:,.0f}".format(loan_amount|float) }}</strong></div>
+                        <div class="detail-item"><span>Loan Term</span><strong>{{ loan_amount_term }} months</strong></div>
+                        <div class="detail-item"><span>Credit History</span><strong>{% if credit_history == '1' %}Good{% else %}Bad{% endif %}</strong></div>
+                        <div class="detail-item"><span>Property Area</span><strong>{{ property_area }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="metric-pill">
+                    <span>Loan-to-Income Ratio</span>
+                    <strong>{{ "{:.2f}".format((loan_amount|float / ((applicant_income|float + coapplicant_income|float) or 1)) * 100) }}%</strong>
+                </div>
+            </article>
+        </section>
+
+        <div class="action-row reveal">
+            <a class="btn btn-primary" href="/form"><i class="fa-solid fa-rotate-right"></i> New Application</a>
+            <a class="btn btn-secondary" href="/"><i class="fa-solid fa-house"></i> Back to Home</a>
+        </div>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="page-shell footer-grid">
+            <div>
+                <h3>Smart Lender</h3>
+                <p>Premium loan prediction experiences with polished presentation and dependable logic.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#details">Details</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:hello@smartlender.dev">hello@smartlender.dev</a>
+                <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
