@@ -81,7 +81,7 @@
                         </div>
                         <div class="field-group">
                             <label for="phone">Mobile Number *</label>
-                            <input type="text" id="phone" name="Phone" placeholder="9876543210" required>
+                            <input type="tel" id="phone" name="Phone" inputmode="numeric" pattern="^[0-9]{10}$" maxlength="10" autocomplete="tel" placeholder="9876543210" title="Enter a 10-digit phone number" required>
                         </div>
                         <div class="field-group">
                             <label for="gender">Gender *</label>

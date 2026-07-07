@@ -44,12 +44,12 @@
             </div>
             {% else %}
             <div class="result-banner__icon review-icon">
-                <i class="fa-solid fa-clock"></i>
+                <i class="fa-solid fa-times-circle"></i>
             </div>
             <div>
                 <p class="hero-eyebrow">Application Status</p>
-                <h1>Under Review</h1>
-                <p>Thank you, {{ name }}. Your profile needs a closer review before a final decision.</p>
+                <h1>Loan Not Approved</h1>
+                <p>Thank you, {{ name }}. The current profile does not meet the approval criteria.</p>
             </div>
             {% endif %}
         </section>
@@ -76,10 +76,10 @@
                 {% else %}
                 <div class="alert-box review-box">
                     <i class="fa-solid fa-circle-info"></i>
-                    <p>The initial assessment suggests additional review. This is not the final lending decision.</p>
+                    <p>The current assessment indicates the loan is not approved with this data.</p>
                 </div>
                 <ul class="check-list">
-                    <li><i class="fa-solid fa-arrow-right"></i> Improve the credit profile where possible</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Improve your credit profile where possible</li>
                     <li><i class="fa-solid fa-arrow-right"></i> Increase supporting income documentation</li>
                     <li><i class="fa-solid fa-arrow-right"></i> Consider a co-applicant if needed</li>
                 </ul>
