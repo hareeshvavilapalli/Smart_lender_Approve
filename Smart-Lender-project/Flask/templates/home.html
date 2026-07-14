@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Lender | Premium Loan Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand__mark">S</span>
+                <span>Smart Lender</span>
+            </a>
+            <button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/form">Loan Prediction</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        <section class="hero-card reveal">
+            <div class="hero-copy">
+                <p class="hero-eyebrow">AI-powered financing platform</p>
+                <h1>Smart Loan Approval Prediction System</h1>
+                <p>Experience a premium, banking-style prequalification journey tailored for modern borrowers and fintech-ready projects.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="/form">Predict Loan Eligibility</a>
+                    <a class="btn btn-secondary" href="#about">Explore Platform</a>
+                </div>
+                <ul class="hero-points">
+                    <li><i class="fa-solid fa-shield-halved"></i> Secure and compliant</li>
+                    <li><i class="fa-solid fa-bolt"></i> Instant eligibility analysis</li>
+                    <li><i class="fa-solid fa-chart-line"></i> Insight-driven recommendations</li>
+                </ul>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-card">
+                    <div class="dashboard-card__header">
+                        <span class="dashboard-card__tag">Portfolio Insight</span>
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div class="dashboard-metric">
+                        <strong>94%</strong>
+                        <span>Approval readiness score</span>
+                    </div>
+                    <div class="dashboard-bars">
+                        <div class="bar"><span></span></div>
+                        <div class="bar"><span></span></div>
+                        <div class="bar"><span></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-grid reveal">
+            <article class="mini-card">
+                <h3>Instant Review</h3>
+                <p>Get quick insights in seconds with a simple, guided flow.</p>
+            </article>
+            <article class="mini-card">
+                <h3>Built for Trust</h3>
+                <p>Professionally structured fields that feel exactly like a real banking portal.</p>
+            </article>
+            <article class="mini-card">
+                <h3>Smart Decisions</h3>
+                <p>Designed for final-year presentations and portfolio-ready storytelling.</p>
+            </article>
+        </section>
+
+        <section class="section-card reveal" id="about">
+            <div class="section-heading">
+                <span class="section-badge">Why it stands out</span>
+                <h2>Banking-grade experience in a lightweight app</h2>
+            </div>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Fast & Accurate</h3>
+                    <p>Modern UI paired with the same prediction engine you already use.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Secure & Professional</h3>
+                    <p>Clean layout and structured data entry keep the experience polished and confident.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <h3>Responsive by Design</h3>
+                    <p>Works seamlessly across mobile, tablet, and desktop screens.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section-card section-card--alt reveal">
+            <div class="section-heading">
+                <span class="section-badge">How it works</span>
+                <h2>From application to decision in four simple steps</h2>
+            </div>
+            <div class="steps-grid">
+                <article class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Fill the form</h3>
+                    <p>Enter your personal and financial details through polished, guided sections.</p>
+                </article>
+                <article class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Let the model analyze</h3>
+                    <p>Your data is processed using the existing machine-learning pipeline.</p>
+                </article>
+                <article class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Review the result</h3>
+                    <p>See the outcome presented in a premium dashboard-style layout.</p>
+                </article>
+                <article class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Take the next step</h3>
+                    <p>Use the result as a clear starting point for your loan journey.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact-card reveal" id="contact">
+            <div>
+                <p class="hero-eyebrow">Ready to begin?</p>
+                <h2>Start your smart loan eligibility check today.</h2>
+                <p>Designed to look like a real fintech experience, while keeping every backend workflow intact.</p>
+            </div>
+            <a class="btn btn-primary" href="/form">Start Application</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="page-shell footer-grid">
+            <div>
+                <h3>Smart Lender</h3>
+                <p>Premium loan prediction experiences for ambitious student projects and modern portfolios.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#about">About</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:hareeshvavilapalli180@gmail.com">hareeshvavilapalli180@gmail.com</a>
+                <a href="https://github.com/hareeshvavilapalli/smart-lender-project" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                <a href="https://www.linkedin.com/in/vavilapalli-hareesh-30b308382" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <p>Developed by Hareesh Vavilapalli</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

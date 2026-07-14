@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application | Smart Lender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand__mark">S</span>
+                <span>Smart Lender</span>
+            </a>
+            <button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/form">Loan Prediction</a>
+                <a href="#application">Application</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        <section class="hero-card hero-card--compact reveal">
+            <div class="hero-copy">
+                <p class="hero-eyebrow">Smart application portal</p>
+                <h1>Secure Loan Eligibility Assessment</h1>
+                <p>Complete the profile below to receive a premium, data-driven loan prediction experience.</p>
+            </div>
+            <div class="hero-visual hero-visual--mini">
+                <div class="dashboard-card">
+                    <div class="dashboard-card__header">
+                        <span class="dashboard-card__tag">Live Review</span>
+                        <i class="fa-solid fa-file-circle-check"></i>
+                    </div>
+                    <div class="dashboard-metric">
+                        <strong>24/7</strong>
+                        <span>Application support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel-card reveal" id="application">
+            <div class="panel-card__header">
+                <div>
+                    <p class="hero-eyebrow">Application Form</p>
+                    <h2>Complete your profile</h2>
+                </div>
+                <div class="step-pill">4 premium sections</div>
+            </div>
+
+            <form action="/predict" method="POST" id="loanForm">
+                <div class="form-section-card">
+                    <div class="section-card__header">
+                        <div class="section-icon"><i class="fa-solid fa-user"></i></div>
+                        <div>
+                            <h3>Personal Information</h3>
+                            <p>Tell us about the applicant.</p>
+                        </div>
+                    </div>
+                    <div class="field-grid">
+                        <div class="field-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="Name" placeholder="John Doe" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="Email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="phone">Mobile Number *</label>
+                            <input type="tel" id="phone" name="Phone" inputmode="numeric" pattern="^[0-9]{10}$" maxlength="10" autocomplete="tel" placeholder="9876543210" title="Enter a 10-digit phone number" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" name="Gender" required>
+                                <option value="">Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="married">Marital Status *</label>
+                            <select id="married" name="Married" required>
+                                <option value="">Select Status</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="dependents">Dependents *</label>
+                            <select id="dependents" name="Dependents" required>
+                                <option value="">Select</option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section-card">
+                    <div class="section-card__header">
+                        <div class="section-icon"><i class="fa-solid fa-briefcase"></i></div>
+                        <div>
+                            <h3>Education & Employment</h3>
+                            <p>Share work and academic background.</p>
+                        </div>
+                    </div>
+                    <div class="field-grid">
+                        <div class="field-group">
+                            <label for="education">Education *</label>
+                            <select id="education" name="Education" required>
+                                <option value="">Select</option>
+                                <option>Graduate</option>
+                                <option>Not Graduate</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="self_employed">Self Employed *</label>
+                            <select id="self_employed" name="Self_Employed" required>
+                                <option value="">Select</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section-card">
+                    <div class="section-card__header">
+                        <div class="section-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                        <div>
+                            <h3>Financial Details</h3>
+                            <p>Provide the core financial profile.</p>
+                        </div>
+                    </div>
+                    <div class="field-grid">
+                        <div class="field-group">
+                            <label for="applicant_income">Applicant Income (Monthly) *</label>
+                            <input type="number" id="applicant_income" name="ApplicantIncome" placeholder="5849" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="coapplicant_income">Co-Applicant Income (Monthly) *</label>
+                            <input type="number" id="coapplicant_income" name="CoapplicantIncome" placeholder="1508" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="loan_amount">Loan Amount (in thousands) *</label>
+                            <input type="number" id="loan_amount" name="LoanAmount" placeholder="128" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="loan_term">Loan Term (Months) *</label>
+                            <input type="number" id="loan_term" name="Loan_Amount_Term" placeholder="360" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="credit_history">Credit History *</label>
+                            <select id="credit_history" name="Credit_History" required>
+                                <option value="">Select</option>
+                                <option value="1">Good</option>
+                                <option value="0">Bad</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="property_area">Property Area *</label>
+                            <select id="property_area" name="Property_Area" required>
+                                <option value="">Select</option>
+                                <option>Urban</option>
+                                <option>Semiurban</option>
+                                <option>Rural</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-check"></i>
+                        Predict Loan Eligibility
+                    </button>
+                    <a class="btn btn-secondary btn-block" href="/">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <div class="loading-overlay" id="loadingOverlay" aria-hidden="true">
+        <div class="loading-card">
+            <div class="spinner"></div>
+            <h3>Assessing your profile</h3>
+            <p>Please wait while we generate the eligibility result.</p>
+        </div>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="page-shell footer-grid">
+            <div>
+                <h3>Smart Lender</h3>
+                <p>Premium-looking application experiences built for student projects and portfolios.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#application">Application</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:hello@smartlender.dev">hello@smartlender.dev</a>
+                <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

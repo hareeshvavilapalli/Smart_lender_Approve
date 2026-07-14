@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result | Smart Lender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-shell">
+            <a class="brand" href="/">
+                <span class="brand__mark">S</span>
+                <span>Smart Lender</span>
+            </a>
+            <button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#details">Details</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        <section class="result-banner reveal">
+            {% if prediction == 1 %}
+            <div class="result-banner__icon success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <p class="hero-eyebrow">Application Status</p>
+                <h1>{{ prediction_text }}</h1>
+                <p>Congratulations, {{ name }}! Your profile aligns well with the eligibility model.</p>
+                <p class="metric-pill"><strong>Model confidence:</strong> {{ "%.2f"|format(prediction_prob * 100) }}%</p>
+            </div>
+            {% else %}
+            <div class="result-banner__icon review-icon">
+                <i class="fa-solid fa-times-circle"></i>
+            </div>
+            <div>
+                <p class="hero-eyebrow">Application Status</p>
+                <h1>{{ prediction_text }}</h1>
+                <p>Thank you, {{ name }}. The current profile does not meet the approval criteria.</p>
+                <p class="metric-pill"><strong>Model confidence:</strong> {{ "%.2f"|format(prediction_prob * 100) }}%</p>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="result-grid reveal">
+            <article class="panel-card result-card">
+                <div class="section-card__header">
+                    <div class="section-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div>
+                        <h3>What the model suggests</h3>
+                        <p>Clear, concise next steps for the applicant.</p>
+                    </div>
+                </div>
+                {% if prediction == 1 %}
+                <div class="alert-box success-box">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <p>Based on the provided profile, the application appears suitable for further processing.</p>
+                </div>
+                <ul class="check-list">
+                    <li><i class="fa-solid fa-arrow-right"></i> Complete the official application form</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Submit the supporting documents</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Await the next verification stage</li>
+                </ul>
+                {% else %}
+                <div class="alert-box review-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p>The current assessment indicates the loan is not approved with this data.</p>
+                </div>
+                <ul class="check-list">
+                    <li><i class="fa-solid fa-arrow-right"></i> Improve your credit profile where possible</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Increase supporting income documentation</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> Consider a co-applicant if needed</li>
+                </ul>
+                {% endif %}
+            </article>
+
+            <article class="panel-card" id="details">
+                <div class="section-card__header">
+                    <div class="section-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <div>
+                        <h3>Application Details</h3>
+                        <p>Every submitted detail is shown here for review.</p>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Personal Information</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span>Full Name</span><strong>{{ name }}</strong></div>
+                        <div class="detail-item"><span>Email</span><strong>{{ email }}</strong></div>
+                        <div class="detail-item"><span>Phone</span><strong>{{ phone }}</strong></div>
+                        <div class="detail-item"><span>Gender</span><strong>{{ gender }}</strong></div>
+                        <div class="detail-item"><span>Marital Status</span><strong>{{ married }}</strong></div>
+                        <div class="detail-item"><span>Dependents</span><strong>{{ dependents }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Education & Employment</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span>Education</span><strong>{{ education }}</strong></div>
+                        <div class="detail-item"><span>Self Employed</span><strong>{{ self_employed }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Financial Details</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span>Applicant Income</span><strong>₹{{ "{:,.0f}".format(applicant_income|float) }}</strong></div>
+                        <div class="detail-item"><span>Co-Applicant Income</span><strong>₹{{ "{:,.0f}".format(coapplicant_income|float) }}</strong></div>
+                        <div class="detail-item"><span>Total Income</span><strong>₹{{ "{:,.0f}".format(applicant_income|float + coapplicant_income|float) }}</strong></div>
+                        <div class="detail-item"><span>Loan Amount</span><strong>₹{{ "{:,.0f}".format(loan_amount|float) }}</strong></div>
+                        <div class="detail-item"><span>Loan Term</span><strong>{{ loan_amount_term }} months</strong></div>
+                        <div class="detail-item"><span>Credit History</span><strong>{% if credit_history == '1' %}Good{% else %}Bad{% endif %}</strong></div>
+                        <div class="detail-item"><span>Property Area</span><strong>{{ property_area }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="metric-pill">
+                    <span>Loan-to-Income Ratio</span>
+                    <strong>{{ "{:.2f}".format((loan_amount|float / ((applicant_income|float + coapplicant_income|float) or 1)) * 100) }}%</strong>
+                </div>
+            </article>
+        </section>
+
+        <div class="action-row reveal">
+            <a class="btn btn-primary" href="/form"><i class="fa-solid fa-rotate-right"></i> New Application</a>
+            <a class="btn btn-secondary" href="/"><i class="fa-solid fa-house"></i> Back to Home</a>
+        </div>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="page-shell footer-grid">
+            <div>
+                <h3>Smart Lender</h3>
+                <p>Premium loan prediction experiences with polished presentation and dependable logic.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/form">Prediction</a>
+                <a href="#details">Details</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:hello@smartlender.dev">hello@smartlender.dev</a>
+                <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
